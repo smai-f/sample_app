@@ -12,6 +12,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', help_path
     assert_select 'a[href=?]', about_path
     assert_select 'a[href=?]', contact_path
+    assert_select 'a[href=?]', signup_path
   end
 
   test 'page titles' do
@@ -23,5 +24,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_title 'Help'
     get about_path
     assert_title 'About'
+    get signup_path
+    assert_title 'Sign up'
   end
 end
