@@ -24,11 +24,12 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     get signup_path
     assert_difference 'User.count', 1 do
       post users_path,
-           params: { user: { name: 'Example User', email: 'email@valid.com', password: 'test123',
-                             password_confirmation: 'test123' } }
+           params: { user: { name: 'Example User', email: 'blah@example.com', password: 'password',
+                             password_confirmation: 'password' } }
     end
     follow_redirect!
     assert_template 'users/show'
     assert_not flash.empty?
+    assert is_logged_in?
   end
 end
