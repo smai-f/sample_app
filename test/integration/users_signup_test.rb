@@ -4,10 +4,10 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   test 'invalid signup information' do
     get signup_path
     assert_no_difference 'User.count' do
-      post users_path, params: { user: { name: '', email: 'user@invalid', password: '', password_confirmation: '' } }
+      post users_path, params: { user: { name: '', email: 'user@invalid', password: ' ', password_confirmation: ' ' } }
     end
     assert_template 'users/new'
-    assert_select '.sign_up_form li' do |lis|
+    assert_select 'li' do |lis|
       error_messages = lis.map(&:to_s)
 
       # Not actually a good idea to verify underlying Rails messages, just trying stuff.
@@ -24,7 +24,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     get signup_path
     assert_difference 'User.count', 1 do
       post users_path,
-           params: { user: { name: 'Example User', email: 'blah@example.com', password: 'password',
+           params: { user: { name: 'Example User', email: 'new@example.com', password: 'password',
                              password_confirmation: 'password' } }
     end
     follow_redirect!
