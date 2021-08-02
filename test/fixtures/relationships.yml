@@ -1,0 +1,15 @@
+one:
+  follower: smai
+  followed: other 
+
+two:
+  follower: smai
+  followed: user_4 
+
+three:
+  follower: other 
+  followed: smai
+
+four:
+  follower: user_3 
+  followed: smai
