@@ -107,6 +107,7 @@ class UserTest < ActiveSupport::TestCase
     # Self-posts for user with followers
     smai.microposts.each do |post_self|
       assert smai.feed.include?(post_self)
+      assert_equal smai.feed.distinct, smai.feed
     end
     # Self-posts for user with no followers
     other.microposts.each do |post_self|
